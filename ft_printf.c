@@ -6,23 +6,27 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:27:43 by paula             #+#    #+#             */
-/*   Updated: 2023/03/30 11:07:44 by paula            ###   ########.fr       */
+/*   Updated: 2023/03/30 11:27:13 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-void replace(char st, va_list ap)
+int replace(char st, va_list ap)
 {
+    int ret;
+
+    ret = 0;
     if (st == '%')
     {
-        putchar('%');
+        ret = putchar('%');
     }
     if (st == 's')
     {
-        puts(va_arg(ap, char*));
+        ret = puts(va_arg(ap, char*));
     }
+    return(ret);
 }
 
 int ft_printf(const char *st, ...)
@@ -38,10 +42,10 @@ int ft_printf(const char *st, ...)
     {
         if (st[i] == '%')
         {
-            replace(st[++i], ap);
+            ret = ret + replace(st[++i], ap);
         }
         else
-            write(1, &st[i], 1);
+            ret = ret + write(1, &st[i], 1);
         i++;
     }
     va_end(ap);
@@ -50,5 +54,11 @@ int ft_printf(const char *st, ...)
 
 int main(void)
 {
-    ft_printf("ola %s %s \n", "mundo", "bonito");
+    int ret;
+    int ret2;
+    
+    ret = ft_printf("ola %s %s\n", "ola", "ola");
+    ret2 = printf("ola %s %s\n", "ola", "ola");
+    printf("%d\n", ret);
+    printf("%d\n", ret2);
 }
