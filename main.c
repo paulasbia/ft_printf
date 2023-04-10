@@ -1,17 +1,15 @@
-#include <assert.h>
+#include "ft_printf.h"
+#include <stdio.h>
 
-void setUp(void) {
-    // set stuff up here
+int main(void)
+{
+    int ret;
+    int ret2;
+    char    s[] = "ola";
+    int     d = 15;
+    
+    ret = ft_printf("ola %s %s %c %d %% %u %x %X %p\n", s, s, 'a', d, 2147483648, d, d, &s);
+    ret2 = printf("ola %s %s %c %d %% %u %x %X %p\n", s, s, 'a', d, (unsigned int)2147483648, d, d, &s);
+    printf("%d\n", ret);
+    printf("%d\n", ret2);
 }
-
-void tearDown(void) {
-    // clean stuff up here
-}
-
-// not needed when using generate_test_runner.rb
-int main(void) {
-    UNITY_BEGIN();
-
-    return UNITY_END();
-}
-

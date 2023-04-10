@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 
-SRCS =  ft_printf.c
+SRCS =  ft_printf.c ft_putchar_fd.c  ft_putstr_fd.c ft_putnbr_fd.c  ft_putuninbr.c ft_hexa.c  ft_adressp.c 
 
 OBJS = $(SRCS:.c=.o)
 
@@ -15,7 +15,10 @@ $(NAME): $(OBJS)
 	ar -crs $(NAME) $(OBJS) 
 	
 test: all
-	gcc -ggdb $(FLAGS) main.c unity_internals.h unity.c unity.h $(NAME) -lbsd -o result.out
+	gcc -ggdb $(FLAGS) ft_printf.c $(NAME) -lbsd -o result.out
+
+run: clean fclean
+	./result.out
 
 clean:
 	rm -f $(OBJS)

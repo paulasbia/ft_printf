@@ -6,32 +6,40 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 12:27:43 by paula             #+#    #+#             */
-/*   Updated: 2023/03/30 11:27:13 by paula            ###   ########.fr       */
+/*   Updated: 2023/04/10 12:09:23 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-int replace(char st, va_list ap)
+void replace(char st, va_list ap, long int *ret)
 {
-    int ret;
 
-    ret = 0;
     if (st == '%')
-    {
-        ret = putchar('%');
-    }
+        ft_putchar_fd(st, 1, ret);
+    if (st == 'c')
+        ft_putchar_fd(va_arg(ap, int), 1, ret);
     if (st == 's')
+        ft_putstr_fd(va_arg(ap, char*), 1, ret);
+    if (st == 'd' || st == 'i')
+        ft_putnbr_fd(va_arg(ap, int), 1, ret);
+    if (st == 'u')
+        ft_putuninbr(va_arg(ap, int), 1, ret);
+    if (st == 'x')
+        ft_hexanbr_fd(va_arg(ap, int), 1, 1, ret);
+    if (st == 'X')
+        ft_hexanbr_fd(va_arg(ap, int), 1, 2, ret);
+    if (st == 'p')
     {
-        ret = puts(va_arg(ap, char*));
-    }
-    return(ret);
+        ft_putstr_fd("0x", 1, ret);
+        ft_adressp(va_arg(ap, unsigned long int), 1, ret);
+    }  
 }
 
 int ft_printf(const char *st, ...)
 {
-    int     ret;
+    long int     ret;
     int     i;
     va_list ap;
 
@@ -42,7 +50,7 @@ int ft_printf(const char *st, ...)
     {
         if (st[i] == '%')
         {
-            ret = ret + replace(st[++i], ap);
+            replace(st[++i], ap, &ret);
         }
         else
             ret = ret + write(1, &st[i], 1);
@@ -56,9 +64,11 @@ int main(void)
 {
     int ret;
     int ret2;
+    char    s[] = "ola";
+    int     d = 15;
     
-    ret = ft_printf("ola %s %s\n", "ola", "ola");
-    ret2 = printf("ola %s %s\n", "ola", "ola");
+    ret = ft_printf("ola %c %% %s %d %u %x %X %p teste final\n", 'a', s, d, 2147483648, d, d, &s);
+    ret2 = printf("ola %c %% %s %d %u %x %X %p teste final\n", 'a', s, d, (unsigned int)2147483648, d, d, &s);
     printf("%d\n", ret);
     printf("%d\n", ret2);
 }
