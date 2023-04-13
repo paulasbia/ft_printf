@@ -13,7 +13,14 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar -crs $(NAME) $(OBJS) 
-	
+
+install:
+	python3 -m pip install --upgrade pip setuptools
+	python3 -m pip install norminette
+
+check:
+	norminette
+
 test: all
 	gcc -ggdb $(FLAGS) ft_printf.c $(NAME) -lbsd -o result.out
 
