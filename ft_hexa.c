@@ -6,7 +6,7 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 10:37:37 by paula             #+#    #+#             */
-/*   Updated: 2023/04/13 15:48:45 by paula            ###   ########.fr       */
+/*   Updated: 2023/04/13 19:50:00 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_hexanbr_fd(unsigned int n, int fd, int x, long int *ret)
 {
-	int digit;
+	int	digit;
 
 	digit = n % 16;
 	if (n >= 16)
