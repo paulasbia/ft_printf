@@ -6,14 +6,14 @@
 /*   By: paula <paula@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 10:07:42 by paula             #+#    #+#             */
-/*   Updated: 2023/04/10 10:55:51 by paula            ###   ########.fr       */
+/*   Updated: 2023/04/13 15:48:26 by paula            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void    ft_putchar_fd(char c, int fd, long int *ret)
+void	ft_putchar_fd(char c, int fd, long int *ret)
 {
-    write(fd, &c, 1);
-    *ret = *ret + 1;
+	write(fd, &c, 1);
+	*ret = *ret + 1;
 }
