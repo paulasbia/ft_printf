@@ -15,6 +15,8 @@
 - Observations : (null)
 
 ## About
+Refer to the [**subject of this project**](https://github.com/paulasbia/ft_printf/tree/main/Subject).
+
 This version of the printf function will be called ``ft_printf``, and will be able to work with the following inputs:
 
 
