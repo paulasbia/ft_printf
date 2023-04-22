@@ -12,7 +12,7 @@
 
 - Actual Status : finished.
 - Result        : 100%
-- Observations : (null)
+- Observations  : without bonus.
 
 ## About
 Refer to the [**subject of this project**](https://github.com/paulasbia/ft_printf/tree/main/Subject).
